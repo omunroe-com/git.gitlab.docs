@@ -7,12 +7,13 @@ gem 'sass'
 gem 'redcarpet'
 gem 'rouge', '~> 2.0'
 gem 'rake', '~> 12.0'
+gem 'html-pipeline', '2.5.0'
 
 group :nanoc do
   gem 'guard-nanoc'
 
   # nanoc checks
-  gem 'nokogiri', '~> 1.7.0'
+  gem 'nokogiri', '~> 1.6'
 
   # Needed to generate Sitemap
   gem 'builder'
