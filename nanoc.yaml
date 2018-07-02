@@ -86,6 +86,7 @@ checks:
       - '\/ee\/api\/'
       - '\/ee\/ssh\/'
       - '\/ee\/user\/gitlab_com\/'
+      - '\/charts\/'
 
   # Configuration for the “external_links” checker, which checks whether all
   # external links are valid.
@@ -164,3 +165,17 @@ products:
       dest_dir: 'content/runner'
       doc_dir:  'docs'
     expose: true
+  chart_gitlab:
+    full_name: 'GitLab Helm Chart'
+    short_name: 'GitLab Chart'
+    slug: 'charts/gitlab'
+    index_file: 'README.*'
+    img: '/assets/images/docs-gitlab.svg'
+    description: 'Cloud Native GitLab Helm Chart'
+    repo: 'https://gitlab.com/charts/gitlab.git'
+    dirs:
+      temp_dir: 'tmp/chart-gitlab/'
+      dest_dir: 'content/charts/gitlab'
+      doc_dir:  'doc'
+    dir_level: '../../'
+    expose: false

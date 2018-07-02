@@ -43,7 +43,8 @@ task :setup_content_dirs do
   products.each_value do |product|
     next unless File.exist?(product['dirs']['temp_dir'])
 
-    source = File.join('../', product['dirs']['temp_dir'], product['dirs']['doc_dir'])
+    dir_level = product['dir_level'].nil? ? '../' : product['dir_level']
+    source = File.join(dir_level, product['dirs']['temp_dir'], product['dirs']['doc_dir'])
     target = product['dirs']['dest_dir']
 
     next if File.symlink?(target)
