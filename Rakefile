@@ -47,11 +47,9 @@ task :setup_content_dirs do
     source = File.join(dir_level, product['dirs']['temp_dir'], product['dirs']['doc_dir'])
     target = product['dirs']['dest_dir']
 
-    next if File.symlink?(target)
-
     puts "\n=> Setting up content directory for #{product['repo']}\n"
 
-    `ln -s #{source} #{target}`
+    `ln -sf #{source} #{target}`
   end
 end
 
