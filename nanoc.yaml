@@ -176,5 +176,5 @@ products:
       temp_dir: 'tmp/chart-gitlab/'
       dest_dir: 'content/ee/install/kubernetes/gitlab_chart'
       doc_dir:  'doc'
-    dir_level: '../../../../'
+    dir_level: '../../../../../'
     expose: false
