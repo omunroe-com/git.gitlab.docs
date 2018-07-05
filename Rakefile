@@ -1,7 +1,7 @@
 require './lib/task_helpers'
 require 'fileutils'
 
-task :default => [:setup_repos, :setup_content_dirs, :pull_repos]
+task :default => [:setup_repos, :pull_repos, :setup_content_dirs]
 
 task :setup_git do
   puts "\n=> Setting up dummy user/email in Git"
@@ -38,21 +38,6 @@ task :setup_repos do
   end
 end
 
-desc 'Setup content directories by symlinking to the repositories documentation folder'
-task :setup_content_dirs do
-  products.each_value do |product|
-    next unless File.exist?(product['dirs']['temp_dir'])
-
-    dir_level = product['dir_level'].nil? ? '../' : product['dir_level']
-    source = File.join(dir_level, product['dirs']['temp_dir'], product['dirs']['doc_dir'])
-    target = product['dirs']['dest_dir']
-
-    puts "\n=> Setting up content directory for #{product['repo']}\n"
-
-    `ln -sf #{source} #{target}`
-  end
-end
-
 desc 'Pulls down the CE, EE, Omnibus and Runner git repos fetching and keeping only the most recent commit'
 task :pull_repos do
   products.each_value do |product|
@@ -80,6 +65,21 @@ task :pull_repos do
       # Reset so that if the repo is cached, the latest commit will be used
       `git reset --hard origin/#{branch}`
     end
+  end
+end
+
+desc 'Setup content directories by symlinking to the repositories documentation folder'
+task :setup_content_dirs do
+  products.each_value do |product|
+    next unless File.exist?(product['dirs']['temp_dir'])
+
+    dir_level = product['dir_level'].nil? ? '../' : product['dir_level']
+    source = File.join(dir_level, product['dirs']['temp_dir'], product['dirs']['doc_dir'])
+    target = product['dirs']['dest_dir']
+
+    puts "\n=> Setting up content directory for #{product['repo']}\n"
+
+    `ln -sf #{source} #{target}`
   end
 end
 
