@@ -85,7 +85,10 @@ task :pull_repos do
       `git reset --hard origin/#{branch}`
 
       # Move process documentation to correct location
-      FileUtils.mv(File.join(product['dirs']['doc_dir'], 'PROCESS.md'), File.join(product['dirs']['doc_dir'], 'development', 'process.md'))
+      process_file = File.join(product['dirs']['doc_dir'], 'PROCESS.md')
+      if File.exist?(process_file)
+        FileUtils.mv(process_file, File.join(product['dirs']['doc_dir'], 'development', 'process.md'))
+      end
     end
   end
 end
