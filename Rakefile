@@ -33,7 +33,10 @@ task :setup_repos do
 
       # Configure repository for sparse-checkout
       `git config core.sparsecheckout true`
-      File.open('.git/info/sparse-checkout', 'w') { |f| f.write("/#{product['dirs']['doc_dir']}/*") }
+      File.open('.git/info/sparse-checkout', 'w') do |f|
+        f.puts("/#{product['dirs']['doc_dir']}/*")
+        f.puts("/PROCESS.md")
+      end
     end
   end
 end
@@ -80,6 +83,9 @@ task :pull_repos do
 
       # Reset so that if the repo is cached, the latest commit will be used
       `git reset --hard origin/#{branch}`
+
+      # Move process documentation to correct location
+      FileUtils.mv(File.join(product['dirs']['doc_dir'], 'PROCESS.md'), File.join(product['dirs']['doc_dir'], 'development', 'process.md'))
     end
   end
 end
