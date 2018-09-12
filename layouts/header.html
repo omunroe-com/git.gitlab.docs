@@ -10,6 +10,18 @@
       <input type="submit" style="visibility: hidden; position:absolute;" />
     </form>
     <% end %>
+    <div class="dropdown">
+      <button class="dropbtn">Versions</button>
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+      <div class="dropdown-content">
+        <a href='/<%= @items['/_data/versions.yaml'][:current].first %>/'><%= @items['/_data/versions.yaml'][:current].first %> (latest stable)</a>
+        <% @items['/_data/versions.yaml'][:previous].each do |version| %>
+          <a href='/<%= version %>/'><%= version %></a>
+        <% end %>
+        <a href='/archives/'>Archives</a>
+        <a href='/'>master</a>
+      </div>
+    </div>
   </div>
   <div class="nav-container">
     <a class="nav-toggle" id="docs-nav-toggle">
