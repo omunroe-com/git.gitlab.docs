@@ -119,6 +119,20 @@ scss_lint:
   <<: *except_pipelines
   <<: *retry
 
+#
+# Rubocop
+#
+rubocop:
+  stage: test
+  script:
+    - bundle exec rubocop
+  cache:
+    key: "test-$CI_COMMIT_REF_NAME"
+    paths:
+      - vendor/ruby
+  <<: *except_pipelines
+  <<: *retry
+
 ###############################################
 #               Review Apps                   #
 ###############################################
