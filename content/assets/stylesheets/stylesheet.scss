@@ -26,6 +26,32 @@ a, a:visited {
   }
 }
 
+details {
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: 6px 12px;
+
+  summary {
+    color: $link-color;
+    cursor: pointer;
+
+    &:before {
+      content: "▶ ";
+      color: $color-dark;
+    }
+
+    &:hover {
+      color: $link-color-hover;
+    }
+  }
+
+  &[open] {
+    summary:before {
+      content: "▼ ";
+    }
+  }
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
