@@ -35,7 +35,7 @@ details {
     color: $link-color;
     cursor: pointer;
 
-    &:before {
+    &::before {
       content: "▶ ";
       color: $color-dark;
     }
@@ -46,7 +46,7 @@ details {
   }
 
   &[open] {
-    summary:before {
+    summary::before {
       content: "▼ ";
     }
   }
