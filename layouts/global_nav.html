@@ -1,0 +1,51 @@
+<nav class="global-nav-content">
+  <% if @item[:global_nav].nil? %>
+    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> --> <!-- for toggle -->
+    <span class="global-nav-block">DevOps stages</span>
+      <% sorted_articles.each do |article| %>
+
+          <% case article[:category] when 'plan' %>
+
+            <!-- plan -->
+              <a class="global-nav-link" href="<%= article.path %>">
+                <% if article[:nav_title] %>
+                  <%= article[:nav_title] %>
+                <% else %>
+                  <%= article[:title] %>
+                <% end %><!-- if article[:nav_title] -->
+              </a>
+
+
+            <!-- create -->
+            <% when 'create' %>
+              <span class="global-nav-cat">Create</span>
+              <a class="global-nav-link" href="<%= article.path %>">
+                <% if article[:nav_title] %>
+                  <%= article[:nav_title] %>
+                <% else %>
+                  <%= article[:title] %>
+                <% end %><!-- if article[:nav_title] -->
+              </a>
+
+          <% end %> <!-- case -->
+
+      <% end %><!-- sorted_articles.each do |article| -->
+    <span class="global-nav-block">Contributor docs</span>
+    <span class="global-nav-block">Something else</span>
+  <% end %>
+</nav>
+
+
+<!-- //for toogle -->
+<script>
+// function openNav() {
+//   document.getElementById("global-nav").style.width = "250px";
+//   document.getElementById("main").style.marginLeft = "250px";
+// }
+
+// function closeNav() {
+//   document.getElementById("global-nav").style.width = "0";
+//   document.getElementById("main").style.marginLeft= "0";
+// }
+</script>
+

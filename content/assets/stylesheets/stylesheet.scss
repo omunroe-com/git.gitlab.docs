@@ -1,5 +1,5 @@
 ---
-version: 53
+version: 54
 ---
 
 @import "variables";
@@ -373,6 +373,53 @@ li {
   }
 }
 
+//global nav
+.global-nav {
+  height: 100%;
+  // width: 0; //this is for toggle
+  width: 20%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+
+  a {
+    display: block;
+  }
+
+  span {
+    display: block;
+  }
+}
+
+.open-global-nav {
+  margin-top: 100px;
+  position: fixed;
+  left: 208px;
+}
+
+.global-nav-content {
+  padding-left: 10px;
+}
+
+.global-nav-link {
+  padding-left: 5px;
+}
+
+.global-nav-block {
+  font-weight: 600;
+}
+
+.closebtn {
+  display: block;
+  float: right;
+  padding-right: 30px;
+}
+//end of global-nav
+
 .last-updated {
   color: $color-light-gray;
   font-size: 13px;
@@ -457,6 +504,7 @@ li {
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
+  transition: margin-left .5s;
 
   .logo-container {
     margin-right: 24px;
