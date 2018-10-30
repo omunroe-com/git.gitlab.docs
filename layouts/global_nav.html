@@ -2,11 +2,27 @@
   <% if @item[:global_nav].nil? %>
     <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> --> <!-- for toggle -->
     <span class="global-nav-block">DevOps stages</span>
-      <% sorted_articles.each do |article| %>
+      
+      
+        <!-- plan -->
+        <span class="global-nav-cat">Plan</span>
+          <% sorted_articles.each do |article| %>
+            <% case article[:category] when 'plan' %>
+                <a class="global-nav-link" href="<%= article.path %>">
+                  <% if article[:nav_title] %>
+                    <%= article[:nav_title] %>
+                  <% else %>
+                    <%= article[:title] %>
+                  <% end %><!-- if article[:nav_title] -->
+                </a>
+            <% end %>
+          <% end %>
 
-          <% case article[:category] when 'plan' %>
-
-            <!-- plan -->
+        <!-- create -->
+        <span class="global-nav-cat">Create</span>
+          <% sorted_articles.each do |article| %>
+            <% case article[:category] when 'create' %>
+              
               <a class="global-nav-link" href="<%= article.path %>">
                 <% if article[:nav_title] %>
                   <%= article[:nav_title] %>
@@ -15,20 +31,10 @@
                 <% end %><!-- if article[:nav_title] -->
               </a>
 
-            <!-- create -->
-            <% when 'create' %>
-              <span class="global-nav-cat">Create</span>
-              <a class="global-nav-link" href="<%= article.path %>">
-                <% if article[:nav_title] %>
-                  <%= article[:nav_title] %>
-                <% else %>
-                  <%= article[:title] %>
-                <% end %><!-- if article[:nav_title] -->
-              </a>
+            <% end %> <!-- case -->
+          <% end %>
 
-          <% end %> <!-- case -->
-
-      <% end %><!-- sorted_articles.each do |article| -->
+      <!-- sorted_articles.each do |article| -->
     <span class="global-nav-block">Contributor docs</span>
     <span class="global-nav-block">Something else</span>
   <% end %>
